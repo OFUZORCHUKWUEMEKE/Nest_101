@@ -1,4 +1,5 @@
-import {Entity,BaseEntity ,PrimaryGeneratedColumn,Column} from 'typeorm'
+import {Entity,BaseEntity ,PrimaryGeneratedColumn,Column, OneToMany} from 'typeorm'
+import { Question } from './question.entity';
 
 @Entity('quizes')
 export class Quiz extends BaseEntity{
@@ -6,17 +7,24 @@ export class Quiz extends BaseEntity{
         comment:'The quiz unique identifier'
     })
     id:number;
-
-
+    
     @Column({
         type:'varchar'
     })
-    title:string
+    title:string;
     
     @Column({
         type:'text'
-
     })
     description:string
+
+    @Column({
+        type:Boolean, 
+        default:1
+    })
+    isActive:Boolean
+
+    @OneToMany(()=>Question,(question)=>question.quiz)
+    questions:Question[]
 
 }   

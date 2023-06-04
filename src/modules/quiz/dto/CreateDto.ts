@@ -2,12 +2,15 @@ import { Length ,IsNotEmpty } from "class-validator"
 
 
 export class CreateQuizDto{
+
     @Length(3,255)
     @IsNotEmpty()
-    title:string
+    title:string;
     
 
-    @Length(5)
+    @Length(5)  
     @IsNotEmpty()
-    description:string
+    description:string;
+
+    isActive:Boolean;
 } 
